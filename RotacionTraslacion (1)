@@ -1,0 +1,95 @@
+#include<GL/glut.h>
+
+void init()
+{
+    glClearColor(1,1,1,0);//RGBA
+    glMatrixMode(GL_PROJECTION);
+    gluOrtho2D(-400,400,-400,400);
+}
+
+
+
+void Rotar()
+{
+    for(double i=0;i<=300;i++)
+    {
+            glClear(GL_COLOR_BUFFER_BIT);
+            glColor3f(0,1,0);
+            glBegin(GL_LINES);
+                glVertex2d(-300,0);
+                glVertex2d(300,0);
+                glVertex2d(0,300);
+                glVertex2d(0,-300);
+            glEnd();
+            glTranslated(i,0,0);
+            glColor3f(1,0,0);
+            glBegin(GL_TRIANGLES);
+                glVertex2d(0,0);
+                glVertex2d(100,0);
+                glVertex2d(50,50);
+            glEnd();
+            glFlush();
+            Sleep(10);
+            glTranslated(-i,0,0);
+    }
+     
+    int j=360;
+    for(double i=0;i<=360;i++)
+    {
+            glClear(GL_COLOR_BUFFER_BIT);
+            glColor3f(0,1,0);
+            glBegin(GL_LINES);
+                glVertex2d(-300,0);
+                glVertex2d(300,0);
+                glVertex2d(0,300);
+                glVertex2d(0,-300);
+            glEnd();
+    
+            glColor3f(1,0,0);
+            /*if(i<=300)
+            {
+            glTranslated(i,0,0);
+            glBegin(GL_TRIANGLES);
+                glVertex2d(0,0);
+                glVertex2d(100,0);
+                glVertex2d(50,50);
+            glEnd();
+            glFlush();
+            Sleep(5);
+            glTranslated(-i,0,0);
+            }*/
+            
+            glRotated(i,0,0,1);
+            glColor3f(1,0,0);
+            glBegin(GL_TRIANGLES);
+                glVertex2d(300,0);
+                glVertex2d(400,0);
+                glVertex2d(350,50);
+            glEnd();
+            glRotated(-i,0,0,1);
+            Sleep(20);
+            
+            //
+            
+            glRotated(j,0,0,1);
+            glColor3f(1,0,0);
+            glBegin(GL_TRIANGLES);
+                glVertex2d(300,0);
+                glVertex2d(400,0);
+                glVertex2d(350,50);
+            glEnd();
+            glRotated(-j,0,0,1);
+            Sleep(20);
+           glFlush();
+           j--;
+    }
+}
+
+int main()
+{
+    glutInitWindowSize(500,500);
+    glutCreateWindow("Programa Rotacion");
+    init();
+    glutDisplayFunc(Rotar);
+    glutMainLoop();
+}

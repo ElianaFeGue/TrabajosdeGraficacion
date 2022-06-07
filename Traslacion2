@@ -1,0 +1,114 @@
+#include<GL/glut.h>
+//#include<math.h>
+//#include <stdio.h>
+
+
+void init()
+{
+    glClearColor(1,1,1,0);//RGBA
+    glMatrixMode(GL_PROJECTION);
+    gluOrtho2D(-400,400,-400,400);
+}
+
+
+
+void Traslate2d()
+{
+    for(double i=0;i<=300;i++)
+    {
+         glClear(GL_COLOR_BUFFER_BIT);
+         glColor3f(0,1,0);
+         glBegin(GL_LINES);
+              glVertex2d(-300,0);
+              glVertex2d(300,0);
+              glVertex2d(0,300);
+              glVertex2d(0,-300);
+         glEnd();
+         glTranslated(i,0,0);
+         glColor3f(1,0,0);
+         glBegin(GL_TRIANGLES);
+              glVertex2d(0,0);
+              glVertex2d(100,0);
+              glVertex2d(50,50);
+         glEnd();
+         glFlush();
+         Sleep(10);
+         glTranslated(-i,0,0);
+         
+    }
+    int i=300;
+    for(double j=0;j<=300;j++)
+    {
+         glClear(GL_COLOR_BUFFER_BIT);
+         glColor3f(0,1,0);
+         glBegin(GL_LINES);
+              glVertex2d(-300,0);
+              glVertex2d(300,0);
+              glVertex2d(0,300);
+              glVertex2d(0,-300);
+         glEnd();
+         glTranslated(0,j,0);
+         glColor3f(1,0,0);
+         glBegin(GL_TRIANGLES);
+              glVertex2d(i,0);
+              glVertex2d(i+100,0);
+              glVertex2d(i+50,50);
+         glEnd();
+         glFlush();
+         Sleep(10);
+         glTranslated(0,-j,0);
+    }
+    
+    for(double j=0;j<=300;j++)
+    {
+         glClear(GL_COLOR_BUFFER_BIT);
+         glColor3f(0,1,0);
+         glBegin(GL_LINES);
+              glVertex2d(-300,0);
+              glVertex2d(300,0);
+              glVertex2d(0,300);
+              glVertex2d(0,-300);
+         glEnd();
+         glTranslated(-j,0,0);
+         glColor3f(1,0,0);
+         glBegin(GL_TRIANGLES);
+              glVertex2d(i,i);
+              glVertex2d(i+100,i);
+              glVertex2d(i+50,i+50);
+         glEnd();
+         glFlush();
+         Sleep(10);
+         glTranslated(j,0,0);
+    }
+    
+    for(double j=0;j<=300;j++)
+    {
+         glClear(GL_COLOR_BUFFER_BIT);
+         glColor3f(0,1,0);
+         glBegin(GL_LINES);
+              glVertex2d(-300,0);
+              glVertex2d(300,0);
+              glVertex2d(0,300);
+              glVertex2d(0,-300);
+         glEnd();
+         glTranslated(0,-j,0);
+         glColor3f(1,0,0);
+         glBegin(GL_TRIANGLES);
+              glVertex2d(0,i);
+              glVertex2d(100,i);
+              glVertex2d(50,i+50);
+         glEnd();
+         glFlush();
+         Sleep(10);
+         glTranslated(0,j,0);
+    }
+}
+
+int main()
+{
+    glutInitWindowSize(500,500);
+    glutCreateWindow("Programa Traslacion");
+    init();
+    glutDisplayFunc(Traslate2d);
+    glutMainLoop();
+}

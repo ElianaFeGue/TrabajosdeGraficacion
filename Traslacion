@@ -1,0 +1,57 @@
+#include<GL/glut.h>
+//#include<math.h>
+//#include <stdio.h>
+
+
+void init()
+{
+    glClearColor(1,1,1,0);//RGBA
+    glMatrixMode(GL_PROJECTION);
+    gluOrtho2D(-400,400,-400,400);
+}
+
+
+
+void Traslate2d()
+{
+    for(double i=0;i<=300;i++)
+    {
+            glClear(GL_COLOR_BUFFER_BIT);
+            glTranslated(i,0,0);
+            //glTranslated(1,0,0);
+            glColor3f(1,0,0);
+            glBegin(GL_TRIANGLES);
+                glVertex2d(0,0);
+                glVertex2d(100,0);
+                glVertex2d(50,50);
+            glEnd();
+            glFlush();
+            Sleep(20);
+            glTranslated(-i,0,0);
+    }
+    
+    for(double i=0;i<=300;i++)
+    {
+            glClear(GL_COLOR_BUFFER_BIT);
+            glTranslated(0,j,0);
+            //glTranslated(1,0,0);
+            glColor3f(1,0,0);
+            glBegin(GL_TRIANGLES);
+                glVertex2d(0,0);
+                glVertex2d(100,0);
+                glVertex2d(50,50);
+            glEnd();
+            glFlush();
+            Sleep(20);
+            glTranslated(0,-j,0);
+    }
+}
+
+int main()
+{
+    glutInitWindowSize(500,500);
+    glutCreateWindow("Programa Traslacion");
+    init();
+    glutDisplayFunc(Traslate2d);
+    glutMainLoop();
+}
